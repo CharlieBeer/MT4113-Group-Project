@@ -4,7 +4,6 @@
 #or within tolerance.
 #this method requires a smooth function
 #'@importFrom numDeriv grad
-
 BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
              method=NULL, gradfn=NULL, hessfn=NULL, jacobfn=NULL){
   right<-max(inits)
