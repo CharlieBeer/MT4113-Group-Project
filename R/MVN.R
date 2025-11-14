@@ -42,7 +42,6 @@ MVN <- function(f, inits, data = NULL, minimum = TRUE, tol, maxit,
   # Set up some starting values for the loop
   niter <- 0
   loop <- TRUE
-  has_converged <- FALSE
 
   while(loop){
     niter <- niter + 1
