@@ -1,8 +1,6 @@
 GN <- function(f, inits, data, minimum = TRUE, tol = 1e-10, maxit = 1000, 
                        method = "GN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
   
-  #need advice on how to load Jacobian package desperately
-  
   #compute initial residuals
   resids <- function(theta, data) {
     preds <- f(theta, data)
@@ -10,7 +8,7 @@ GN <- function(f, inits, data, minimum = TRUE, tol = 1e-10, maxit = 1000,
     return(r)
   }
   
-  #jacobian
+  #compute jacobian if not provided
   if (is.null(jacobfn)) {
     jacobian_function <- function(theta, data) {
       jacobian(resids, theta, data = data)
@@ -74,3 +72,4 @@ GN <- function(f, inits, data, minimum = TRUE, tol = 1e-10, maxit = 1000,
   
   return(result)
 }
+
