@@ -1,3 +1,23 @@
+# -----------------------------------
+# Gauss-Newton Method (GN)
+# -----------------------------------
+#' @description
+#' Performs non-linear least squares optimisation using Gauss-Newton method
+#'
+#' @param f function that returns predicted values given parameters and data
+#' @param inits vector of initial values for parameters
+#' @param data dataframe containing the data
+#' @param minimum search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)
+#' @param tol tolerance level
+#' @param maxit maximum number of iterations run before stopping
+#' @param method identifier, takes "GN" only to allow the parent function to call on it
+#' @param gradfn NULL variable, included to match parent function inputs
+#' @param hessfn NULL variable, included to match parent function inputs
+#' @param jacobfn (optional) Jacobian function of residuals, uses numerical approximation otherwise
+#'
+#' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
+#' @export
+
 GN <- function(f, inits, data, minimum = TRUE, tol = 1e-10, maxit = 1000, 
                        method = "GN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
   
@@ -72,4 +92,5 @@ GN <- function(f, inits, data, minimum = TRUE, tol = 1e-10, maxit = 1000,
   
   return(result)
 }
+
 
