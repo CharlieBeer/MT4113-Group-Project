@@ -1,5 +1,3 @@
-library(numDeriv)
-
 # the function of Univariate Newton Method
 UVN <- function(f, inits, data, minimum, tol, maxit,
                 method, gradfn, hessfn, jacobfn) {
