@@ -1,3 +1,42 @@
+# -----------------------------------
+# Helper Function: Tolerance Checker
+# -----------------------------------
+#' @description
+#' Computes the ratio of the Euclidean norm of 2 vectors
+#'
+#' @param delta step value for each parameter
+#' @param theta estimate of the minimised values
+#'
+#' @returns the ratio of the Euclidean norm of the inputted vectors
+#' @export
+
+Norm_Ratio <- function(delta, theta){
+  return((sqrt(sum(delta^2))) / (sqrt(sum(theta^2))))
+}
+
+# -----------------------------------
+# Bisection
+# -----------------------------------
+#' @description
+#' Performs Bisection
+#'
+#' @param f function to be minimised
+#' @param inits vector of initial values to be minimised
+#' @param data (optional) daatframe with appropriate number of columns for number of variables being optimised
+#' @param minimum search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)
+#' @param tol tolerance level
+#' @param maxit maximum number of iterations run before stopping
+#' @param method identifier, takes "MVN" only to allow the parent function to call on it
+#' @param gradfn (optional) gradient function of f, uses finite differencing otherwise
+#' @param hessfn (optional) hessian function of f, uses finite differencing otherwise
+#' @param jacobfn NULL variable, included to match parent function inputs
+#'
+#' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
+#' @export
+
+
+
+
 #Bisection Method
 #The Bisection method works by taking two initial points, finding their derivatives and then if they
 #are opposite signs we look at the midpoint, repeating until we find where the derivative is zero
