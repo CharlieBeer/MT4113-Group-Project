@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-funoptim <- function(f, inits=NULL, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
-                     method=NULL, gradfn=NULL, hessfn=NULL, jacobfn=NULL) {
-=======
 # -----------------------------------
 # Parent Optimisation Function
 # -----------------------------------
@@ -12,8 +8,8 @@ funoptim <- function(f, inits=NULL, data=NULL, minimum=TRUE, tol=1e-8, maxit=100
 #' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
 #' @export
 
-funoptim <- function(f, inits, data, minimum, tol, maxit,
-                     method, gradfn, hessfn, jacobfn) {
+funoptim <- function(f, inits=NULL, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
+                     method=NULL, gradfn=NULL, hessfn=NULL, jacobfn=NULL) {
   # Error Checking:
   if(!is.function(f))
     stop("Error: 'f' must be a function.")
@@ -23,7 +19,6 @@ funoptim <- function(f, inits, data, minimum, tol, maxit,
     stop("Error: 'minimum' must be either TRUE or FALSE")
   if(!method %in% c("GS", "BS", "UVN", "MVN", "GN"))
     stop("Error: method provided is invalid.")
->>>>>>> origin/main
 
   if (method=="GS"){
     return(GS(f, inits, data, minimum, tol, maxit,
