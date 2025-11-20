@@ -1,4 +1,4 @@
-# the function of Univariate Newton Method
+# the function of Univariate Newton Method new
 UVN <- function(f, inits, data, minimum, tol, maxit,
                 method, gradfn, hessfn, jacobfn) {
 
