@@ -50,7 +50,10 @@ MVN <- function(f, inits, data = NULL, minimum = TRUE, tol, maxit,
 
   # If searching for a maximum, work with the negative of the function, as Newton searches for minimums
   if (minimum == FALSE) {
-    f <- -f}
+    og_f <- f
+    f <- function(theta, ...){
+      return( -og_f(theta, ...))
+    }}
 
   # If not provided with analytic functions, use numDeriv to estimate
   if (is.null(gradfn)){
@@ -89,7 +92,7 @@ MVN <- function(f, inits, data = NULL, minimum = TRUE, tol, maxit,
 
   # Flip back over for final evaluation if maximising
   if (minimum == FALSE) {
-    f <- -f}
+    f <- og_f}
   return(list(estimate = theta,
               feval = Wrapper(theta),
               grad = g,
