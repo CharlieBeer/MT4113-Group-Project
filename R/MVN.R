@@ -22,7 +22,7 @@ Norm_Ratio <- function(delta, theta){
 #'
 #' @param f function to be minimised
 #' @param inits vector of initial values to be minimised
-#' @param data (optional) daatframe with appropriate number of columns for number of variables being optimised
+#' @param data (optional) dataframe with appropriate number of columns for number of variables being optimised
 #' @param minimum search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)
 #' @param tol tolerance level
 #' @param maxit maximum number of iterations run before stopping
@@ -67,7 +67,7 @@ MVN <- function(f, inits, data = NULL, minimum = TRUE, tol, maxit,
   }
   # Check convergence
   # 0: tolerance reached, 1: tolerance not reached, 2: max. iterations reached
-  if (NormRatio(delta, theta) < tol) {
+  if (Norm_Ratio(delta, theta) < tol) {
     conv <- 0
   } else if (niter > maxit) {
     conv <- 2
