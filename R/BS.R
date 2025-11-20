@@ -6,16 +6,31 @@
 #'@importFrom numDeriv grad
 BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
              method=NULL, gradfn=NULL, hessfn=NULL, jacobfn=NULL){
+  func<-function(x) f(x, data)
   right<-max(inits)
   left<-min(inits)
   if (right==left){stop("The input is not a range",call.=FALSE)}
   width<-right - left
-  grad_left<- grad(f,left)
-  grad_right<- grad(f,right)
+  grad_left<- grad(func,left)
+  grad_right<- grad(func,right)
   if (grad_left*grad_right>0){stop("the gradients of the range values have the same sign, Bisection will not work",call.=FALSE)}
+  niter=0
   while (width>tol){
+    niter=niter+1
+    if (niter>maxit){
+      estimate<-((left+right)/2)
+      return (list(
+        estimate=estimate,
+        fval=func(estimate),
+        grad=grad(func,estimate),
+        tolerance=tol,
+        conv=2,
+        niter=niter
+      ))
+
+    }
     midpoint<-(left+right)/2
-    grad_midpoint<-grad(f,midpoint)
+    grad_midpoint<-grad(func,midpoint)
     if (grad_midpoint*grad_left>0){
       left<-midpoint
       grad_left<-grad_midpoint
@@ -25,7 +40,15 @@ BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
     }
     width<-right-left
   }
-  return ((left+right)/2)
+  estimate=(left+right)/2
+  return (list(
+    estimate=estimate,
+    fval=func(estimate),
+    grad=grad(func,estimate),
+    tolerance=tol,
+    conv=0,
+    niter=niter
+      ))
 
 }
 
