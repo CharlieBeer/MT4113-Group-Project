@@ -9,6 +9,7 @@ Performs non-linear least squares optimisation using Gauss-Newton method.
 ### GS:  
 
 ### MVN:  
+Performs multivariate optimisation using Newton's method.
 
 ### UVN:  
 
