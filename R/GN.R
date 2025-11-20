@@ -18,7 +18,7 @@
 #' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
 #' @export
 
-GN <- function(f, inits, data, minimum = TRUE, tol = 1e-10, maxit = 1000, 
+GN <- function(f, inits, data=NULL, minimum = TRUE, tol = 1e-10, maxit = 1000, 
                        method = "GN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
   
   #compute initial residuals
@@ -92,5 +92,6 @@ GN <- function(f, inits, data, minimum = TRUE, tol = 1e-10, maxit = 1000,
   
   return(result)
 }
+
 
 
