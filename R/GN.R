@@ -15,7 +15,7 @@
 #' @param hessfn NULL variable, included to match parent function inputs
 #' @param jacobfn (optional) Jacobian function of residuals, uses numerical approximation otherwise
 #'
-#' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
+#' @returns a list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
 #' @export
 
 GN <- function(f, inits, data=NULL, minimum = TRUE, tol = 1e-10, maxit = 1000, 
@@ -92,6 +92,7 @@ GN <- function(f, inits, data=NULL, minimum = TRUE, tol = 1e-10, maxit = 1000,
   
   return(result)
 }
+
 
 
 
