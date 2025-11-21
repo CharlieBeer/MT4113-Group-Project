@@ -36,8 +36,8 @@ Norm_Ratio <- function(delta, theta){
 #' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
 #' @export
 
-MVN <- function(f, inits, data = NULL, minimum = TRUE, tol, maxit,
-                method = "MVN", gradfn = NULL, hessfn = NULL, jacobfn = NULL){
+MVN <- function(f, inits, data, minimum, tol, maxit,
+                method = "MVN", gradfn, hessfn, jacobfn){
 
   # Local wrapper function that allows passing of the data argument to grad and hessian, if applicable
   Wrapper <- function(theta, ...){ # ... included when Wrapper was a global function, kept for defensive programming in case of later expansion
