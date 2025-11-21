@@ -1,3 +1,6 @@
+# the function of Univariate Newton Method new
+UVN <- function(f, inits, data = NULL, minimum = TRUE, tol, maxit,
+                method = "UVN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
 # -----------------------------------
 # Univariate Newton's Method (UVN)
 # -----------------------------------
@@ -51,6 +54,7 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
 
   # setup for the parameters
   par  <- inits
+
   step <- tol + 1
   iter <- 0
 
@@ -67,6 +71,8 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
 
     step <- g / h
     par  <- par - step
+
+
   }
 
   # Check convergence
@@ -78,22 +84,28 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
   } else {
     conv <- 1
   }
-
+  
   # Flip back over for final evaluation if maximising
   if (minimum == FALSE) {
-    f <- og_f}
-
+   f <- og_f
+  }
   estimate <- par
-  feval    <- f(estimate, data)
+  feval <- f(estimate, data)
+  grad_final <- numDeriv::grad(f_tar, estimate)
+  tolerance <- abs(step)
+  niter <- iter
+
+
 
   result <- list(
     estimate  = estimate,
     feval     = feval,
-    grad      = g,
-    tolerance = abs(step),
+    grad      = grad_final,
+    tolerance = tolerance,
     conv      = conv,
-    niter     = iter
+    niter     = niter
   )
 
   return(result)
+
 }
