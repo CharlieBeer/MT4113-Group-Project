@@ -1,11 +1,20 @@
 Package: MT4113GroupProject
-Title: What the Package Does (One Line, Title Case)
+Title: Unified Optimiser
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+    person("Charles, "Beer"", , "cb478@st-andrews.ac.uk", role = c("aut", "cre"))
+    person("Ilana", "Goldman", , "isg1@st-andrews.ac.uk", role = c("aut", "cre"))
+    person("Holly", "Goldsmith", , "hg81@st-andrews.ac.uk", role = c("aut", "cre"))
+    person("Chenyu", "Lin", , "cl303@st-andrews.ac.uk", role = c("aut", "cre"))
+Description: This package is designed to optimise a wide variety of functions
+via one of five methods—grid search, bisection method, univariate Newton, 
+multivariate Newton and Gauss-Newton. Users have the option to select one of 
+these methods, and also input a variety of analytic functions to speed up 
+processing time if desired. All functions in this package are tied to the parent
+function 'funoptim', and this should be the only function users need to call.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.0
+RoxygenNote: 7.3.3
+Imports: numDeriv
