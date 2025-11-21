@@ -67,7 +67,7 @@ BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
   estimate=(left+right)/2
   return (list(
     estimate=estimate,
-    fval=func(estimate),
+    feval=func(estimate),
     grad=numDeriv::grad(func,estimate),
     tolerance=width,
     conv=0,
@@ -82,7 +82,7 @@ test_f<-function(x){
   return (x^5-3*x^4+12*x^3-5*x^2-3)
 }
 
-test_inits<-c(0.06,0.5)
+test_inits<-c(0.1,5)
 
 BS(test_f,test_inits)
 

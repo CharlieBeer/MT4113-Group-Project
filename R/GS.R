@@ -27,7 +27,7 @@ GS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
     func<-function(x) f(x, data)
   }
 
-  initial<-inits[0]
+  initial<-inits[1]
   grid<-seq(initial-10,initial+10,length.out=100) #the grid that we will evaluate the function on
 
   fgrid<-sapply(grid,func) #the function evaluated at the grid points
@@ -38,7 +38,7 @@ GS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
 
   return(list(
     estimate=best_arg,
-    fval=best_val,
+    feval=best_val,
     grad=NA, #grid search doesn't find a gradient
     tolerance=tol,
     conv=0,
