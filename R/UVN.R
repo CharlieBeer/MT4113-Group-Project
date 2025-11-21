@@ -1,6 +1,3 @@
-# the function of Univariate Newton Method new
-UVN <- function(f, inits, data = NULL, minimum = TRUE, tol, maxit,
-                method = "UVN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
 # -----------------------------------
 # Univariate Newton's Method (UVN)
 # -----------------------------------
@@ -84,7 +81,7 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
   } else {
     conv <- 1
   }
-  
+
   # Flip back over for final evaluation if maximising
   if (minimum == FALSE) {
    f <- og_f
@@ -107,5 +104,4 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
   )
 
   return(result)
-
 }
