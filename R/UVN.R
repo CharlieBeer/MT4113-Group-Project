@@ -1,36 +1,40 @@
 # the function of Univariate Newton Method new
-UVN <- function(f, inits, data, minimum, tol, maxit,
-                method, gradfn, hessfn, jacobfn) {
+UVN <- function(f, inits, data = NULL, minimum = TRUE, tol, maxit,
+                method = "UVN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
 
-  # setup for the target function
-  f_tar <- function(theta){
-    f(theta,data)
+  # change the sign for minimum
+  if (minium == FALSE) {
+    f <- -f
   }
 
-  # find the maximum  and minimum
-  if (minimum) {
-    target <- function(theta) f_tar(theta)
-  } else{
-    target <- function(theta) -f_tar(theta)
+  # set gradfn/grad and hessfn/hessian
+  if (is.null(gradfn)) {
+    gradfn <- function(theta, data) {
+      grad(f, theta, data = data)
+    }
+  }
+  if (is.null(hessfn)) {
+    hessfn <- function(theta, data) {
+      hessian(f, theta, data = data)
+    }
   }
 
   # setup for the parameters
-  par <- inits
+  par  <- inits
   step <- tol + 1
   iter <- 0
 
   # calculation
   while (abs(step) > tol && iter < maxit) {
 
-    g <- grad(target, par)
-    H_mat <- hessian(target, par)
-    h     <- H_mat[1, 1]
+    g     <- gradfn(par, data)
+    H_mat <- hessfn(par, data)
+    h     <- as.numeric(H_mat[1, 1])
 
-    if(abs(h) < 1e-10) {
-      break
-    }
+    if(abs(h) < 1e-10) break
+
     step <- g / h
-    par <- par - step
+    par  <- par - step
     iter <- iter + 1
   }
 
@@ -42,21 +46,21 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
     conv <- 2
   }
 
+  if (minimum == FALSE) {
+    f <- -f
+  }
+
   estimate <- par
-  feval <- f(estimate, data)
-  grad_final <- grad(f_tar, estimate)
-  tolerance <- abs(step)
-  niter <- iter
+  feval    <- f(estimate, data)
 
   result <- list(
     estimate  = estimate,
     feval     = feval,
-    grad      = grad_final,
-    tolerance = tolerance,
+    grad      = g,
+    tolerance = abs(step),
     conv      = conv,
-    niter     = niter
+    niter     = iter
   )
 
   return(result)
-
 }
