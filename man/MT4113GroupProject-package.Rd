@@ -8,4 +8,15 @@
 \description{
 This package is designed to optimise a wide variety of functions via one of five methods—grid search, bisection method, univariate Newton, multivariate Newton and Gauss-Newton. Users have the option to select one of these methods, and also input a variety of analytic functions to speed up processing time if desired. All functions in this package are tied to the parent function 'funoptim', and this should be the only function users need to call.
 }
+\author{
+\strong{Maintainer}: Charles Beer \email{cb478@st-andrews.ac.uk}
+
+Authors:
+\itemize{
+  \item Ilana Goldman \email{isg1@st-andrews.ac.uk}
+  \item Holly Goldsmith \email{hg81@st-andrews.ac.uk}
+  \item Chenyu Lin \email{cl303@st-andrews.ac.uk}
+}
+
+}
 \keyword{internal}

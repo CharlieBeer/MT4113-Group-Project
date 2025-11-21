@@ -2,10 +2,12 @@ Package: MT4113GroupProject
 Title: Unified Optimiser
 Version: 0.0.0.9000
 Authors@R: 
-    person("Charles, "Beer"", , "cb478@st-andrews.ac.uk", role = c("aut", "cre"))
-    person("Ilana", "Goldman", , "isg1@st-andrews.ac.uk", role = c("aut", "cre"))
-    person("Holly", "Goldsmith", , "hg81@st-andrews.ac.uk", role = c("aut", "cre"))
-    person("Chenyu", "Lin", , "cl303@st-andrews.ac.uk", role = c("aut", "cre"))
+  c(
+    person("Charles", "Beer", email= "cb478@st-andrews.ac.uk", role = c("aut", "cre")),
+    person("Ilana", "Goldman", email= "isg1@st-andrews.ac.uk", role = "aut"),
+    person("Holly", "Goldsmith", email= "hg81@st-andrews.ac.uk", role = "aut"),
+    person("Chenyu", "Lin", email= "cl303@st-andrews.ac.uk", role = "aut")
+  )
 Description: This package is designed to optimise a wide variety of functions
   via one of five methods—grid search, bisection method, univariate Newton, 
   multivariate Newton and Gauss-Newton. Users have the option to select one of 
