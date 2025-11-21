@@ -41,6 +41,7 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
   if (is.null(gradfn)) {
     gradfn <- function(theta) {
       numDeriv::grad(Wrapper, theta)
+    }
   }
   if (is.null(hessfn)) {
     hessfn <- function(theta) {
