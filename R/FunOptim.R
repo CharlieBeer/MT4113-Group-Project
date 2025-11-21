@@ -45,43 +45,5 @@ funoptim <- function(f, inits=NULL, data=NULL, minimum=TRUE, tol=1e-8, maxit=100
 
 }
 
-#test
-
-test_data<-read.csv("Data/testdata.csv")
-
-test_f_GS<-function(x){
-  return ((x-0.25)*(x-0.6)*(x-5)*(x-3))
-}
-test_inits_GS<-c(0)
-funoptim(test_f_GS,test_inits_GS,method="GS",minimum=TRUE)
 
 
-test_f_BS<-function(x){
-  return ((x-0.25)*(x-0.6)*(x-5)*(x-3))
-}
-test_inits_BS<-c(0,10)
-funoptim(test_f_BS,test_inits_BS,method="BS",minimum=TRUE)
-
-install.packages("EnvStats")
-install.packages("LaplacesDemon")
-library(EnvStats)  #zmlnorm functions
-library(LaplacesDemon)  #invlogit function
-
-dln <- function(p, data) {
-
-  return(-sum(log(dzmlnorm(data, p[1], exp(p[2]), invlogit(p[3])))))
-
-}
-
-funoptim(f = dln, inits, data = test_data$x, minimum, tol,
-         maxit, method="MVN", gradfn, hessfn, jacobfn)
-
-
-
-f1 <- function(x) (x-2)^2
-init <- c(5)
-
-funoptim(f1, init, method="GS")
-funoptim(f1, c(0,5), method="BS")
-funoptim(f1, 5, method="UVN")
-funoptim(function(t) f1(t[1]), c(5), method="MVN")
