@@ -1,20 +1,4 @@
 # -----------------------------------
-# Helper Function: Tolerance Checker
-# -----------------------------------
-#' @description
-#' Computes the ratio of the Euclidean norm of 2 vectors
-#'
-#' @param delta step value for each parameter
-#' @param theta estimate of the minimised values
-#'
-#' @returns the ratio of the Euclidean norm of the inputted vectors
-#' @export
-
-Norm_Ratio <- function(delta, theta){
-  return((sqrt(sum(delta^2))) / (sqrt(sum(theta^2))))
-}
-
-# -----------------------------------
 # Bisection
 # -----------------------------------
 #' @description
@@ -32,20 +16,21 @@ Norm_Ratio <- function(delta, theta){
 #' @param jacobfn NULL variable, included to match parent function inputs
 #'
 #' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
-#' @export
-
-
-
-
+#' @importFrom numDeriv grad
+#-----------------------------------------------------------------
 #Bisection Method
 #The Bisection method works by taking two initial points, finding their derivatives and then if they
 #are opposite signs we look at the midpoint, repeating until we find where the derivative is zero
 #or within tolerance.
 #this method requires a smooth function
-#'@importFrom numDeriv grad
+#'@export
 BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
              method=NULL, gradfn=NULL, hessfn=NULL, jacobfn=NULL){
-  func<-function(x) f(x, data)
+  if (is.null(data)) {
+    func<-function(x) f(x)
+  } else {
+    func<-function(x) f(x, data)
+  }
   right<-max(inits)
   left<-min(inits)
   if (right==left){stop("The input is not a range",call.=FALSE)}
@@ -84,7 +69,7 @@ BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
     estimate=estimate,
     fval=func(estimate),
     grad=grad(func,estimate),
-    tolerance=tol,
+    tolerance=width,
     conv=0,
     niter=niter
       ))
@@ -100,3 +85,4 @@ test_f<-function(x){
 test_inits<-c(0.06,0.5)
 
 BS(test_f,test_inits)
+
