@@ -1,20 +1,4 @@
 # -----------------------------------
-# Helper Function: Tolerance Checker
-# -----------------------------------
-#' @description
-#' Computes the ratio of the Euclidean norm of 2 vectors
-#'
-#' @param delta step value for each parameter
-#' @param theta estimate of the minimised values
-#'
-#' @returns the ratio of the Euclidean norm of the inputted vectors
-#' @export
-
-Norm_Ratio <- function(delta, theta){
-  return((sqrt(sum(delta^2))) / (sqrt(sum(theta^2))))
-}
-
-# -----------------------------------
 # Grid Search
 # -----------------------------------
 #' @description
@@ -34,24 +18,28 @@ Norm_Ratio <- function(delta, theta){
 #' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
 #' @export
 
-
-
 GS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
              method=NULL, gradfn=NULL, hessfn=NULL, jacobfn=NULL){
 
-  initial<-inits[1]
+  if (is.null(data)) {
+    func<-function(x) f(x)
+  } else {
+    func<-function(x) f(x, data)
+  }
+
+  initial<-inits[0]
   grid<-seq(initial-10,initial+10,length.out=100) #the grid that we will evaluate the function on
 
-  fgrid<-sapply(grid,function(x) f(x,data)) #the function evaluated at the grid points
+  fgrid<-sapply(grid,func) #the function evaluated at the grid points
 
   index<-if (minimum) which.min(fgrid) else which.max(fgrid) #the index where the optimal value is
-  best_arg<-as.numeric(grid[index]) #the argument values that optimize the function approximation
+  best_arg<-as.numeric(grid[index]) #the argument value that optimizes the function approximation
   best_val<-fgrid[index] #the value of the function at the min/max approximation
 
   return(list(
     estimate=best_arg,
     fval=best_val,
-    grad=NA,
+    grad=NA, #grid search doesn't find a gradient
     tolerance=tol,
     conv=0,
     niter=length(grid)
@@ -60,3 +48,12 @@ GS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
 
 
 }
+
+test_f<-function(x){
+  return ((x-0.25)*(x-0.6)*(x-5)*(x-3))
+}
+
+test_inits<-c(0,10)
+
+GS(test_f,test_inits,minimum=TRUE)
+

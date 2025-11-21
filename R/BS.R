@@ -35,8 +35,8 @@ BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
   left<-min(inits)
   if (right==left){stop("The input is not a range",call.=FALSE)}
   width<-right - left
-  grad_left<- grad(func,left)
-  grad_right<- grad(func,right)
+  grad_left<- numDeriv::grad(func,left)
+  grad_right<- numDeriv::grad(func,right)
   if (grad_left*grad_right>0){stop("the gradients of the range values have the same sign, Bisection will not work",call.=FALSE)}
   niter=0
   while (width>tol){
@@ -46,7 +46,7 @@ BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
       return (list(
         estimate=estimate,
         fval=func(estimate),
-        grad=grad(func,estimate),
+        grad=numDeriv::grad(func,estimate),
         tolerance=tol,
         conv=2,
         niter=niter
@@ -54,7 +54,7 @@ BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
 
     }
     midpoint<-(left+right)/2
-    grad_midpoint<-grad(func,midpoint)
+    grad_midpoint<-numDeriv::grad(func,midpoint)
     if (grad_midpoint*grad_left>0){
       left<-midpoint
       grad_left<-grad_midpoint
@@ -68,7 +68,7 @@ BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
   return (list(
     estimate=estimate,
     fval=func(estimate),
-    grad=grad(func,estimate),
+    grad=numDeriv::grad(func,estimate),
     tolerance=width,
     conv=0,
     niter=niter

@@ -1,12 +1,14 @@
 # MT4113-Group-Project  
 ## Description of functions:  
 
-### BS:  
+### BS:
+Performs the bisection method
 
 ### GN: 
 Performs non-linear least squares optimisation using Gauss-Newton method.
 
-### GS:  
+### GS: 
+Performs the grid search method
 
 ### MVN:  
 Performs multivariate optimisation using Newton's method.
