@@ -46,11 +46,19 @@ funoptim <- function(f, inits=NULL, data=NULL, minimum=TRUE, tol=1e-8, maxit=100
 }
 
 #test
-test_f<-function(x){
-  return (x^2-3)
-}
 
-test_inits<-c(0.06,0.5)
 test_data<-read.csv("Data/testdata.csv")
-funoptim(test_f,test_inits,method="GS")
-funoptim(test_f,test_inits,method="BS")
+
+test_f_GS<-function(x){
+  return ((x-0.25)*(x-0.6)*(x-5)*(x-3))
+}
+test_inits_GS<-c(0)
+funoptim(test_f_GS,test_inits_GS,method="GS",minimum=TRUE)
+
+
+test_f_BS<-function(x){
+  return ((x-0.25)*(x-0.6)*(x-5)*(x-3))
+}
+test_inits_BS<-c(0,10)
+funoptim(test_f_BS,test_inits_BS,method="BS",minimum=TRUE)
+

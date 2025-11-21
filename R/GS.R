@@ -27,13 +27,13 @@ GS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
     func<-function(x) f(x, data)
   }
 
-  initial<-inits[1]
+  initial<-inits[0]
   grid<-seq(initial-10,initial+10,length.out=100) #the grid that we will evaluate the function on
 
   fgrid<-sapply(grid,func) #the function evaluated at the grid points
 
   index<-if (minimum) which.min(fgrid) else which.max(fgrid) #the index where the optimal value is
-  best_arg<-as.numeric(grid[index]) #the argument value that optimize the function approximation
+  best_arg<-as.numeric(grid[index]) #the argument value that optimizes the function approximation
   best_val<-fgrid[index] #the value of the function at the min/max approximation
 
   return(list(
@@ -53,7 +53,7 @@ test_f<-function(x){
   return ((x-0.25)*(x-0.6)*(x-5)*(x-3))
 }
 
-test_inits<-c(0.06,0.5)
+test_inits<-c(0,10)
 
 GS(test_f,test_inits,minimum=TRUE)
 
