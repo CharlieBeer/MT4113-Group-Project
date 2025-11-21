@@ -8,8 +8,8 @@
 #' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
 #' @export
 
-funoptim <- function(f, inits, data, minimum, tol, maxit,
-                     method, gradfn, hessfn, jacobfn) {
+funoptim <- function(f, inits=NULL, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
+                     method=NULL, gradfn=NULL, hessfn=NULL, jacobfn=NULL) {
   # Error Checking:
   if(!is.function(f))
     stop("Error: 'f' must be a function.")
@@ -44,3 +44,13 @@ funoptim <- function(f, inits, data, minimum, tol, maxit,
   stop("method not named correctly")
 
 }
+
+#test
+test_f<-function(x){
+  return (x^2-3)
+}
+
+test_inits<-c(0.06,0.5)
+test_data<-read.csv("Data/testdata.csv")
+funoptim(test_f,test_inits,method="GS")
+funoptim(test_f,test_inits,method="BS")
