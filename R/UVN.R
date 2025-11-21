@@ -3,14 +3,14 @@ UVN <- function(f, inits, data = NULL, minimum = TRUE, tol, maxit,
                 method = "UVN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
 
   # change the sign for minimum
-  if (minium == FALSE) {
+  if (minimum == FALSE) {
     f <- -f
   }
 
   # set gradfn/grad and hessfn/hessian
   if (is.null(gradfn)) {
     gradfn <- function(theta, data) {
-      grad(f, theta, data = data)
+      numDeriv::grad(f, theta, data = data)
     }
   }
   if (is.null(hessfn)) {
