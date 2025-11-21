@@ -27,6 +27,9 @@ MVN(f, inits, ...)
 \references{
 Swallow, B. (2025, October 29th). Multivariate Optimisation [Lecture]. University of St Andrews. [https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128841/mod_resource/content/2/Chpater7_12.pdf]
 }
+\note{
+This function is one of 5 to be called with the parent function 'funoptim', also included in this package.
+}
 \examples{
 f <- function(theta){
   x <- theta[1]
