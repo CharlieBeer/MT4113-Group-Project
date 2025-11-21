@@ -36,6 +36,4 @@ f <- function(theta){
 
 MVN(f = f, inits = c(4, -1), data = NULL, minimum = TRUE, tol = 0.000001, maxit = 100, method = "MVN", gradfn = NULL, hessfn = NULL, jacobfn = NULL)
 }
-\seealso{
-  \code({\link(funoptim))}
-}
+
