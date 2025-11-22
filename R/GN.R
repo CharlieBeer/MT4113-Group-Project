@@ -17,36 +17,28 @@
 #' @returns a list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
 #' @export
 
-GN <- function(f, inits, data=NULL, tol = 1e-10, maxit = 1000,
-                       method = "GN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
+GN <- function(f, inits, data=NULL, tol = 1e-10, maxit = 1000, method = "GN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
 
-  #create a wrapper function to handle a case with data=NULL
-  if (is.null(data)) {
-    f_wrapper <- function(theta) f(theta)
-    resids_wrapper <- function(theta) {
-      preds <- f_wrapper(theta)
-      return(preds)
-    }
-  } else {
-    f_wrapper <- function(theta) f(theta, data)
-    resids_wrapper <- function(theta) {
-      preds <- f_wrapper(theta)
-      r <- data$y - preds
+  #internal residuals function - modified to take data=NULL
+  resids <- function(theta, data) {
+    if (is.null(data)) {
+      #when data=NULL return residuals directly
+      return(f(theta))
+    } else {
+      #when data is provided, compute residuals as usual
+      pred <- f(theta, data)
+      r <- data$y - pred
       return(r)
     }
   }
 
   #compute jacobian if not provided
   if (is.null(jacobfn)) {
-    jacobian_function <- function(theta) {
-      numDeriv::jacobian(resids_wrapper, theta)
+    jacobian_function <- function(theta, data) {
+      numDeriv::jacobian(resids, theta, data = data)
     }
   } else {
-    if (is.null(data)) {
-      jacobian_function <- function(theta) jacobfn(theta)
-    } else {
-      jacobian_function <- function(theta) jacobfn(theta, data)
-    }
+    jacobian_function <- jacobfn
   }
 
   #compute Euclidean norm
@@ -64,9 +56,9 @@ GN <- function(f, inits, data=NULL, tol = 1e-10, maxit = 1000,
   for (iter in 1:maxit) {
 
     #compute Jacobian
-    J <- jacobian_function(theta_current)
+    J <- jacobian_function(theta_current, data)
     #compute residuals
-    residuals <- resids_wrapper(theta_current)
+    residuals <- resids(theta_current, data)
 
     #compute gradient
     gradient <- t(J) %*% residuals
@@ -94,7 +86,7 @@ GN <- function(f, inits, data=NULL, tol = 1e-10, maxit = 1000,
   }
   
     #compute the final residuals and final value of the function
-    final_residuals <- resids_wrapper(theta_current)
+    final_residuals <- resids(theta_current,data)
     feval <- sum(final_residuals^2)
 
     #results
@@ -103,6 +95,3 @@ GN <- function(f, inits, data=NULL, tol = 1e-10, maxit = 1000,
 
   return(result)
 }
-
-
-
