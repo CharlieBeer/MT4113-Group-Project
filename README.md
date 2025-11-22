@@ -14,6 +14,7 @@ Performs the grid search method
 Performs multivariate optimisation using Newton's method.
 
 ### UVN:  
+Performs univariate optimisation using Newton's method
 
 ### FunOptim:
 Can call any of the aforementioned optimisation methods in order to optimise an inputted function.
