@@ -6,7 +6,7 @@
 #'
 #' @param f function that returns predicted values given parameters and data
 #' @param inits vector of initial values for parameters
-#' @param data dataframe containing the data
+#' @param data (optional, if f returns residuals) dataframe containing the data
 #' @param tol tolerance level
 #' @param maxit maximum number of iterations run before stopping
 #' @param method identifier, takes "GN" only to allow the parent function to call on it
