@@ -11,7 +11,7 @@ GS(f, inits, ...)
 
 \arguments{
   \item{f}{
-    the function to be optimised
+    the function to be optimised - if no dataframe provided, f MUST return vector of residuals directly
     }
   \item{inits}{
   a vector of initial guesses for each parameter to be optimised.
@@ -42,18 +42,19 @@ GS(f, inits, ...)
   }
 
 \references{
-Swallow, B. (2025, October 29th). Multivariate Optimisation [Lecture]. University of St Andrews. [https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128841/mod_resource/content/2/Chpater7_12.pdf]
+Swallow, B. (2025, October 29th). Multivariate Optimization [Lecture]. University of St Andrews. [https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128841/mod_resource/content/2/Chpater7_12.pdf]
 }
 \author{
 Ilana Goldman
 }
 
 \examples{
-test_f<-function(x){
-  return (x^4-6*x^3+x^2-2*x^2-9)
+test_f <- function(theta) {
+  x <- theta[1]
+  y <- theta[2]
+  return(c(x - 3, y + 2))
 }
 
-test_inits <- c(1.0, 1.5, 0.2)
+test_inits <- c(0, 0)
 
-GN(test_f,test_inits)
-}
+GN(f = test_f, inits = test_inits, data = NULL)
