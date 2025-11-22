@@ -7,7 +7,6 @@
 #' @param f function that returns predicted values given parameters and data
 #' @param inits vector of initial values for parameters
 #' @param data dataframe containing the data
-#' @param minimum search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)
 #' @param tol tolerance level
 #' @param maxit maximum number of iterations run before stopping
 #' @param method identifier, takes "GN" only to allow the parent function to call on it
@@ -18,23 +17,36 @@
 #' @returns a list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
 #' @export
 
-GN <- function(f, inits, data=NULL, minimum = TRUE, tol = 1e-10, maxit = 1000,
+GN <- function(f, inits, data=NULL, tol = 1e-10, maxit = 1000,
                        method = "GN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
 
-  #compute initial residuals
-  resids <- function(theta, data) {
-    preds <- f(theta, data)
-    r <- data$y - preds
-    return(r)
+  #create a wrapper function to handle a case with data=NULL
+  if (is.null(data)) {
+    f_wrapper <- function(theta) f(theta)
+    resids_wrapper <- function(theta) {
+      preds <- f_wrapper(theta)
+      return(preds)
+    }
+  } else {
+    f_wrapper <- function(theta) f(theta, data)
+    resids_wrapper <- function(theta) {
+      preds <- f_wrapper(theta)
+      r <- data$y - preds
+      return(r)
+    }
   }
 
   #compute jacobian if not provided
   if (is.null(jacobfn)) {
-    jacobian_function <- function(theta, data) {
-      numDeriv::jacobian(resids, theta, data = data)
+    jacobian_function <- function(theta) {
+      numDeriv::jacobian(resids_wrapper, theta)
     }
   } else {
-    jacobian_function <- jacobfn
+    if (is.null(data)) {
+      jacobian_function <- function(theta) jacobfn(theta)
+    } else {
+      jacobian_function <- function(theta) jacobfn(theta, data)
+    }
   }
 
   #compute Euclidean norm
@@ -45,17 +57,16 @@ GN <- function(f, inits, data=NULL, minimum = TRUE, tol = 1e-10, maxit = 1000,
   #parameters for the loop
   theta_current <- inits
   iter <- 0
-  conv_code <- 2  #default to max iterations reached - this can be updated if something else happens
+  conv <- 2  #default to max iterations reached - this can be updated if something else happens
   final_tolerance <- NA
 
   #begin loop
   for (iter in 1:maxit) {
 
     #compute Jacobian
-    J <- jacobian_function(theta_current, data)
-
+    J <- jacobian_function(theta_current)
     #compute residuals
-    residuals <- resids(theta_current, data)
+    residuals <- resids_wrapper(theta_current)
 
     #compute gradient
     gradient <- t(J) %*% residuals
@@ -74,25 +85,24 @@ GN <- function(f, inits, data=NULL, minimum = TRUE, tol = 1e-10, maxit = 1000,
     final_tolerance <- increment  #keep track of tolerance
 
     if (increment < tol) { #convergence has been reached
-      conv_code <- 0  #update convergence code
+      conv <- 0  #update convergence code
       break
     }
 
     #update theta for the next iteration
     theta_current <- theta_new
   }
+  
+    #compute the final residuals and final value of the function
+    final_residuals <- resids_wrapper(theta_current)
+    feval <- sum(final_residuals^2)
 
-
-  #compute the final residuals and final value of the function
-  final_residuals <- resids(theta_current, data)
-  feval <- sum(final_residuals^2)
-
-  #results
-  result <- list(estimate = theta_current, feval = feval, grad = gradient, tolerance = final_tolerance, conv = conv_code, niter = iter)
+    #results
+    result <- list(estimate = theta_current, feval = feval, grad = gradient, 
+                   tolerance = final_tolerance, conv = conv, niter = iter)
 
   return(result)
 }
-
 
 
 
