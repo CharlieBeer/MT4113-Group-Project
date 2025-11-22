@@ -22,7 +22,8 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
                 method = "UVN", gradfn, hessfn, jacobfn) {
 
   # Local wrapper function that allows passing of the data argument to grad and hessian, if applicable
-  Wrapper <- function(theta, ...){ # ... included when Wrapper was a global function, kept for defensive programming in case of later expansion
+  # ... included when Wrapper was a global function, kept for defensive programming in case of later expansion
+  Wrapper <- function(theta, ...){
     if (is.null(data)){
       f(theta)
     } else {
@@ -31,13 +32,22 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
   }
 
   # If searching for a maximum, work with the negative of the function, as Newton searches for minimums
+  # Wrapper function follows -f
   if (minimum == FALSE) {
     og_f <- f
     f <- function(theta, ...){
-      return( -og_f(theta, ...))
-    }}
+      -og_f(theta, ...)
+    }
+    Wrapper <- function(theta, ...){
+      if (is.null(data)){
+        f(theta)
+      } else {
+        f(theta, data)
+      }
+    }
+  }
 
-  # set gradfn/grad and hessfn/hessian
+  # If gradient/hessian is not provided, then use gradient/hessian from numDeriv
   if (is.null(gradfn)) {
     gradfn <- function(theta) {
       numDeriv::grad(Wrapper, theta)
@@ -49,27 +59,24 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
     }
   }
 
-  # setup for the parameters
+  # Initialise parameter value, step size and iteration
   par  <- inits
-
   step <- tol + 1
   iter <- 0
 
-  # calculation
+  # Newton iterations
   while (abs(step) > tol && iter < maxit) {
     iter <- iter + 1
 
     g     <- gradfn(par)
-    H_mat <- hessfn(par)
-    h     <- as.numeric(H_mat[1, 1])
+    H     <- hessfn(par)
+    h     <- as.numeric(H[1, 1])
 
     # Check stopping criteria
     if(abs(h) < 1e-10) break
 
     step <- g / h
     par  <- par - step
-
-
   }
 
   # Check convergence
@@ -86,22 +93,46 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
   if (minimum == FALSE) {
    f <- og_f
   }
-  estimate <- par
-  feval <- f(estimate, data)
-  grad_final <- numDeriv::grad(f_tar, estimate)
-  tolerance <- abs(step)
-  niter <- iter
-
-
 
   result <- list(
-    estimate  = estimate,
-    feval     = feval,
-    grad      = grad_final,
-    tolerance = tolerance,
+    estimate  = par,
+    feval     = Wrapper(par),
+    grad      = g,
+    tolerance = abs(step),
     conv      = conv,
-    niter     = niter
+    niter     = iter
   )
 
   return(result)
 }
+
+
+# =====================
+# 1. Without data
+# =====================
+#f_UVN <- function(theta){
+#  x <- theta[1]
+#  (x - 33)^3
+#}
+#UVN_test1 <- UVN(f = f_UVN, inits = 10, data = NULL, minimum = TRUE, tol = 1e-6,
+#                      maxit = 100, method = "UVN", gradfn = NULL, hessfn = NULL,
+#                      jacobfn = NULL)
+#UVN_test1
+# =====================
+# 2. With data
+# =====================
+#library(tidyverse)
+#MiningData <- read.csv("MiningData.csv") %>%
+#  mutate(ratio = width/depth)
+#alpha_0 <- median(MiningData$angle)
+#beta_0 <- median(na.omit(-log(1 - (MiningData$angle)/alpha_0) / MiningData$ratio))
+#RSS_UVN <- function(theta, data){
+#  alpha <- theta
+#  beta  <- beta_0
+#  pred <- alpha * (1 - exp(-beta * data$ratio))
+#  sum((data$angle - pred)^2)
+#}
+#UVN_test2 <- UVN(f = RSS_UVN, inits = alpha_0, data = MiningData %>% select(ratio, angle),
+#                      minimum = TRUE, tol = 1e-6, maxit = 100, method = "UVN", gradfn = NULL,
+#                      hessfn = NULL, jacobfn = NULL)
+#UVN_test2
