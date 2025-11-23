@@ -19,6 +19,8 @@ Norm_Ratio <- function(delta, theta){
 # -----------------------------------
 # Multivariate Newton's Method (MVN)
 # -----------------------------------
+#' @name MVN
+#' @title Multivariate Newton Optimisation
 #' @description
 #' Performs multivariate optimisation using Newton's method
 #'
@@ -32,6 +34,20 @@ Norm_Ratio <- function(delta, theta){
 #' @param gradfn (optional) gradient function of f, uses finite differencing otherwise
 #' @param hessfn (optional) hessian function of f, uses finite differencing otherwise
 #' @param jacobfn NULL variable, included to match parent function inputs
+#'
+#' @return A list containing:
+#' \item{estimate}{Optimised estimate}
+#' \item{feval}{Function evaluated at optimised estimate}
+#' \item{grad}{Gradient of function at optimised estimate}
+#' \item{tolerance}{Tolerance level reached through optimisation}
+#' \item{conv}{Whether or not the optimisation converged. 0 - converged, 1 - did not converge, 2 - max iterations reached}
+#' \item{niter}{Number of iterations run}
+#'
+#' @references
+#' Swallow, B. (2025). Univariate Optimisation.
+#' University of St Andrews.
+#' \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128840/mod_resource/content/4/_book/univariate-optimization.html#bisection-method}
+#' @author
 #'
 #' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
 #' @export
