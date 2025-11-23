@@ -56,8 +56,8 @@ BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
 
 
   width<-right - left
-  grad_left<- numDeriv::grad(func,left)
-  grad_right<- numDeriv::grad(func,right)
+  grad_left<- numDeriv::grad(f,left)
+  grad_right<- numDeriv::grad(f,right)
   if (grad_left*grad_right>0){stop("the gradients of the range values have the same sign, Bisection will not work",call.=FALSE)}
   niter=0
   while (width>tol){
@@ -66,8 +66,8 @@ BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
       estimate<-((left+right)/2)
       return (list(
         estimate=estimate,
-        feval=func(estimate),
-        grad=numDeriv::grad(func,estimate),
+        feval=f(estimate),
+        grad=numDeriv::grad(f,estimate),
         tolerance=width,
         conv=2,
         niter=niter
@@ -75,7 +75,7 @@ BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
 
     }
     midpoint<-(left+right)/2
-    grad_midpoint<-numDeriv::grad(func,midpoint)
+    grad_midpoint<-numDeriv::grad(f,midpoint)
     if (grad_midpoint*grad_left>0){
       left<-midpoint
       grad_left<-grad_midpoint
@@ -83,8 +83,8 @@ BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
       estimate<-midpoint
       return(list(
         estimate=estimate,
-        feval=func(estimate),
-        grad=numDeriv::grad(func,estimate),
+        feval=f(estimate),
+        grad=numDeriv::grad(f,estimate),
         tolerance=0,
         conv=0,
         niter=niter
@@ -98,8 +98,8 @@ BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
   estimate=(left+right)/2
   return (list(
     estimate=estimate,
-    feval=func(estimate),
-    grad=numDeriv::grad(func,estimate),
+    feval=f(estimate),
+    grad=numDeriv::grad(f,estimate),
     tolerance=width,
     conv=0,
     niter=niter

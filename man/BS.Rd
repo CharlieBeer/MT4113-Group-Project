@@ -11,21 +11,22 @@ BS(
   minimum = TRUE,
   tol = 1e-08,
   maxit = 100,
-  method = BS,
+  method = "BS",
   gradfn = NULL,
   hessfn = NULL,
   jacobfn = NULL
 )
 }
 \arguments{
-\item{f}{Function to be optimised}
+\item{f}{Function to be optimised, this should only take one variable}
 
 \item{inits}{A length-2 numeric vector giving the initial search interval.
 The gradient at these two points must have opposite signs.}
 
-\item{data}{(optional) Dataframe passed to the function if needed.}
+\item{data}{(optional) NULL variable, included to match parent function inputs}
 
-\item{minimum}{(optional) Search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)}
+\item{minimum}{(optional) This is only here so that the parent function runs smoothly, bisection finds stationary
+points regardless of if they are minima or maxima}
 
 \item{tol}{(optional) Tolerance level}
 

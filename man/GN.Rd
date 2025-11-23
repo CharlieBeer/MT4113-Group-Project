@@ -24,6 +24,8 @@ GN(
 
 \item{data}{(optional, if f returns residuals) dataframe containing the data}
 
+\item{minimum}{this is here just so that the parent function runs smoothly}
+
 \item{tol}{tolerance level}
 
 \item{maxit}{maximum number of iterations run before stopping}
