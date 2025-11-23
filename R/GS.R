@@ -6,12 +6,12 @@
 #' @description
 #'The grid search method works by evaluating a function on points of a grid and picking
 #'the point which has either the maximum or minimum value depending on the given criteria
-#' @param f Function to be optimised
+#' @param f Function to be optimised, this should only take one variable
 #' @param inits An initial guess, the grid will be on +- 10 of this point
-#' @param data (optional) Dataframe passed to the function if needed.
+#' @param data (optional) NULL variable, included to match parent function inputs
 #' @param minimum (optional) Search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)
-#' @param tol (optional) Tolerance level
-#' @param maxit (optional) Maximum number of iterations run before stopping
+#' @param tol (optional) NULL variable, included to match parent function inputs
+#' @param maxit (optional) NULL variable, included to match parent function inputs
 #' @param method (optional) NULL variable, included to match parent function inputs
 #' @param gradfn (optional) NULL variable, included to match parent function inputs
 #' @param hessfn (optional) NULL variable, included to match parent function inputs
@@ -41,16 +41,17 @@
 GS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
              method=NULL, gradfn=NULL, hessfn=NULL, jacobfn=NULL){
 
-  if (is.null(data)) {
-    func<-function(x) f(x)
-  } else {
-    func<-function(x) f(x, data)
-  }
+  #starting with checks
+  if (!is.numeric(inits)){stop("inits must be numeric.",call.=FALSE)}
+  if (length(inits) < 1){stop("inits must have at least one element.",call.=FALSE)}
+  if (!is.logical(minimum)){stop("minimum must be TRUE or FALSE.",call.=FALSE)}
+  if (!is.function(f)){stop("f must be a function",call.=FALSE)}
+  if (length(formals(f))!=1){stop("f must only take one variable.",call.=FALSE)}
 
   initial<-inits[1]
   grid<-seq(initial-10,initial+10,length.out=100) #the grid that we will evaluate the function on
 
-  fgrid<-sapply(grid,func) #the function evaluated at the grid points
+  fgrid<-sapply(grid,f) #the function evaluated at the grid points
 
   index<-if (minimum) which.min(fgrid) else which.max(fgrid) #the index where the optimal value is
   best_arg<-as.numeric(grid[index]) #the argument value that optimizes the function approximation
@@ -60,9 +61,9 @@ GS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
     estimate=best_arg,
     feval=best_val,
     grad=NA, #grid search doesn't find a gradient
-    tolerance=tol,
+    tolerance=grid[2]-grid[1], #the spacing of the grid points
     conv=0,
-    niter=length(grid)
+    niter=1 #grid search doesn't iterate
   ))
 
 
@@ -73,7 +74,7 @@ test_f<-function(x){
   return ((x-0.25)*(x-0.6)*(x-5)*(x-3))
 }
 
-test_inits<-c(0,10)
+test_inits<-c(0)
 
 GS(test_f,test_inits,minimum=TRUE)
 
