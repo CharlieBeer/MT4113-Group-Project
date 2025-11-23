@@ -106,20 +106,8 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
   return(result)
 }
 
-
 # =====================
-# 1. Without data
-# =====================
-#f_UVN <- function(theta){
-#  x <- theta[1]
-#  (x - 33)^3
-#}
-#UVN_test1 <- UVN(f = f_UVN, inits = 10, data = NULL, minimum = TRUE, tol = 1e-6,
-#                      maxit = 100, method = "UVN", gradfn = NULL, hessfn = NULL,
-#                      jacobfn = NULL)
-#UVN_test1
-# =====================
-# 2. With data
+# Test
 # =====================
 #library(tidyverse)
 #MiningData <- read.csv("MiningData.csv") %>%
