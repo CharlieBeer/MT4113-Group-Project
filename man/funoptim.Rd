@@ -62,7 +62,7 @@ funoptim(f = f, inits = c(4, -1),method="MVN")
 \references{
 Swallow, B. (2025). Univariate Optimization.
 University of St Andrews.
-\url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128841/mod_resource/content/2/Chpater7_12.pdf]}
+\url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128841/mod_resource/content/2/Chpater7_12.pdf}
 }
 \author{
 Charlie Beer, Holly Goldsmith, Ilana Goldman, Chenyu Lin
