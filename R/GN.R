@@ -6,10 +6,10 @@
 #' @description
 #' Performs non-linear least squares optimisation using Gauss-Newton method
 #'
-#' @param f the function to be optimised - if no dataframe provided, f MUST return vector of residuals directly
+#' @param f the function to be optimised
 #' @param inits a vector of initial guesses for each parameter to be optimised.
-#' @param data (optional, if f returns residuals) dataframe containing the data
-#' @param minimum this is here just so that the parent function runs smoothly
+#' @param data dataframe containing the data
+#' @param minimum not relevant, included to match parent function inputs
 #' @param tol tolerance level
 #' @param maxit maximum number of iterations run before stopping
 #' @param method identifier, takes "GN" only to allow the parent function to call on it
