@@ -1,0 +1,30 @@
+what the aim of this text file is:
+
+"you are required to create a text document in your repository that details what your team plans to do
+and what tasks are allocated to each team member. This document should be updated at least once per week
+showing what tasks have been completed, explaining any problems that arose, and if any tasks are to be
+allocated to different team members. There is no penalty from not being able to complete your weekly tasks
+that your team has assigned to you, in fact, that is the reason we need teamwork, because often one person
+cannot achieve all they set out to do initially."
+
+plan for the project:
+
+We plan on splitting up the coursework evenly as follows:
+Charlie - Grid search & Bisection
+Holly - Multivariate Newton
+Ilana - Gauss-Newton & Report
+Chenyu - Univariate Newton
+
+we will each work on our respective code and then collate this into the parent optimisation function.
+we will meet in person frequently in order to talk through issues in person
+
+timeline of project:
+11/11 - Grid Search & funoptim started.
+12/11 - Bisection started
+14/11 - Multivariate Newton started & added functions to be called without importing
+18/11 - Error checks added to parent function & improved roxygen use
+19/11 - Univariate Newton & Gauss-Newton started
+20/11 - function descriptions written & lots of debugging
+21/11 - tested functions, help files written manually
+22/11 - lots of debugging and testing
+23/11 - debugging & changed help files to be made by roxygen so that the package could be built.
