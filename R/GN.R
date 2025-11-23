@@ -38,7 +38,7 @@
 #'GN(f = test_f, inits = test_inits, data = NULL)
 #' @export
 
-GN <- function(f, inits, data=NULL, tol = 1e-10, maxit = 1000, method = "GN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
+GN <- function(f, inits, data=NULL,minimum=TRUE, tol = 1e-10, maxit = 1000, method = "GN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
 
   #internal residuals function - modified to take data=NULL
   resids <- function(theta, data) {

@@ -8,6 +8,7 @@ GN(
   f,
   inits,
   data = NULL,
+  minimum = TRUE,
   tol = 1e-10,
   maxit = 1000,
   method = "GN",
