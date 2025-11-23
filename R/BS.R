@@ -8,27 +8,27 @@
 #'are opposite signs we look at the midpoint, repeating until we find where the derivative is zero
 #'or within tolerance.
 #'This method requires a smooth function.
-#' @param f Function to be minimised
+#' @param f Function to be optimised
 #' @param inits A length-2 numeric vector giving the initial search interval.
 #' The gradient at these two points must have opposite signs.
 #' @param data (optional) Dataframe passed to the function if needed.
-#' @param minimum Search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)
-#' @param tol Tolerance level
-#' @param maxit Maximum number of iterations run before stopping
-#' @param method NULL variable, included to match parent function inputs
-#' @param gradfn NULL variable, included to match parent function inputs
-#' @param hessfn NULL variable, included to match parent function inputs
-#' @param jacobfn NULL variable, included to match parent function inputs
+#' @param minimum (optional) Search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)
+#' @param tol (optional) Tolerance level
+#' @param maxit (optional) Maximum number of iterations run before stopping
+#' @param method (optional) NULL variable, included to match parent function inputs
+#' @param gradfn (optional) NULL variable, included to match parent function inputs
+#' @param hessfn (optional) NULL variable, included to match parent function inputs
+#' @param jacobfn (optional) NULL variable, included to match parent function inputs
 #'
 #' @return A list containing:
-#' \item{estimate}{Optimized estimate}
+#' \item{estimate}{Optimised estimate}
 #' \item{feval}{Function evaluated at optimised estimate}
 #' \item{grad}{Gradient of function at optimised estimate}
 #' \item{tolerance}{Final interval width}
 #' \item{conv}{Whether or not the optimisation converged. 0 - converged, 1 - failed, 2 - max iterations reached}
 #' \item{niter}{Number of iterations}
 #' @references
-#' Swallow, B. (2025). Uniivariate Optimisation.
+#' Swallow, B. (2025). Univariate Optimisation.
 #' University of St Andrews.
 #' \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128840/mod_resource/content/4/_book/univariate-optimization.html#bisection-method}
 #' @author Charles Beer

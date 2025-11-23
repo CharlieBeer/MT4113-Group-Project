@@ -18,26 +18,26 @@ BS(
 )
 }
 \arguments{
-\item{f}{Function to be minimised}
+\item{f}{Function to be optimised}
 
 \item{inits}{A length-2 numeric vector giving the initial search interval.
 The gradient at these two points must have opposite signs.}
 
 \item{data}{(optional) Dataframe passed to the function if needed.}
 
-\item{minimum}{Search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)}
+\item{minimum}{(optional) Search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)}
 
-\item{tol}{Tolerance level}
+\item{tol}{(optional) Tolerance level}
 
-\item{maxit}{Maximum number of iterations run before stopping}
+\item{maxit}{(optional) Maximum number of iterations run before stopping}
 
-\item{method}{NULL variable, included to match parent function inputs}
+\item{method}{(optional) NULL variable, included to match parent function inputs}
 
-\item{gradfn}{NULL variable, included to match parent function inputs}
+\item{gradfn}{(optional) NULL variable, included to match parent function inputs}
 
-\item{hessfn}{NULL variable, included to match parent function inputs}
+\item{hessfn}{(optional) NULL variable, included to match parent function inputs}
 
-\item{jacobfn}{NULL variable, included to match parent function inputs}
+\item{jacobfn}{(optional) NULL variable, included to match parent function inputs}
 }
 \value{
 A list containing:
@@ -63,7 +63,7 @@ BS(test_f,test_inits)
 
 }
 \references{
-Swallow, B. (2025). Uniivariate Optimisation.
+Swallow, B. (2025). Univariate Optimisation.
 University of St Andrews.
 \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128840/mod_resource/content/4/_book/univariate-optimization.html#bisection-method}
 }

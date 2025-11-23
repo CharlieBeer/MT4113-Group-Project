@@ -1,22 +1,42 @@
 # -----------------------------------
 # Grid Search
 # -----------------------------------
+#' @name GS
+#' @title Grid search Method
 #' @description
-#' Performs Grid Search
+#'The grid search method works by evaluating a function on points of a grid and picking
+#'the point which has either the maximum or minimum value depending on the given criteria
+#' @param f Function to be optimised
+#' @param inits An initial guess, the grid will be on +- 10 of this point
+#' @param data (optional) Dataframe passed to the function if needed.
+#' @param minimum (optional) Search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)
+#' @param tol (optional) Tolerance level
+#' @param maxit (optional) Maximum number of iterations run before stopping
+#' @param method (optional) NULL variable, included to match parent function inputs
+#' @param gradfn (optional) NULL variable, included to match parent function inputs
+#' @param hessfn (optional) NULL variable, included to match parent function inputs
+#' @param jacobfn (optional) NULL variable, included to match parent function inputs
 #'
-#' @param f function to be minimised
-#' @param inits vector of initial values to be minimised
-#' @param data (optional) daatframe with appropriate number of columns for number of variables being optimised
-#' @param minimum search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)
-#' @param tol tolerance level
-#' @param maxit maximum number of iterations run before stopping
-#' @param method identifier, takes "MVN" only to allow the parent function to call on it
-#' @param gradfn (optional) gradient function of f, uses finite differencing otherwise
-#' @param hessfn (optional) hessian function of f, uses finite differencing otherwise
-#' @param jacobfn NULL variable, included to match parent function inputs
+#' @return A list containing:
+#' \item{estimate}{Optimised estimate}
+#' \item{feval}{Function evaluated at optimised estimate}
+#' \item{grad}{Gradient of function at optimised estimate}
+#' \item{tolerance}{Tolerance level reached through optimisation}
+#' \item{conv}{Whether or not the optimisation converged. 0 - converged, 1 - failed, 2 - max iterations reached}
+#' \item{niter}{Number of iterations}
+#' @references
+#' Swallow, B. (2025). Univariate Optimisation.
+#' University of St Andrews.
+#' \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128840/mod_resource/content/4/_book/univariate-optimization.html#grid-search}
+#' @author Charles Beer
+#' @examples
+#' test_f<-function(x){
+#' return ((x-0.25)*(x-0.6)*(x-5)*(x-3))
+#' }
+#' test_inits<-c(0)
+#' GS(test_f,test_inits,minimum=TRUE)
 #'
-#' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
-#' @export
+#'@export
 
 GS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
              method=NULL, gradfn=NULL, hessfn=NULL, jacobfn=NULL){
