@@ -41,7 +41,7 @@ The gradient at these two points must have opposite signs.}
 }
 \value{
 A list containing:
-\item{estimate}{Optimized estimate}
+\item{estimate}{Optimised estimate}
 \item{feval}{Function evaluated at optimised estimate}
 \item{grad}{Gradient of function at optimised estimate}
 \item{tolerance}{Final interval width}
