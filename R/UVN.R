@@ -26,9 +26,9 @@
 #' \item{niter}{Number of iterations run}
 #'
 #' @references
-#' Swallow, B. (2025). Univariate Optimisation.
+#' Swallow, B. (2025). Univariate Optimization.
 #' University of St Andrews.
-#' \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128840/mod_resource/content/4/_book/univariate-optimization.html#bisection-method}
+#' \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128840/mod_resource/content/4/_book/univariate-optimization.html#newtons-method-in-1d
 #' @author Chenyu Lin
 #' @examples
 #' f <- function(theta){
