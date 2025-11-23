@@ -16,9 +16,12 @@ the point which has either the maximum or minimum value depending on the given c
 
 ### MVN:  
 Performs multivariate optimisation using Newton's method.
+The multivariate Newton method uses the gradient vector and Hessian matrix to expand Newton's method to multiple parameters.
 
-### UVN:  
-Performs univariate optimisation using Newton's method
+### UVN:
+The univariate Newton method starts from an initial point and iterates by first and second derivatives. 
+The Newton iterations determine a local minimum or maximum at each step.
+This process converges to either the minimum or maximum.
 
 ### FunOptim:
 Can call any of the aforementioned optimisation methods in order to optimise an inputted function.
