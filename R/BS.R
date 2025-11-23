@@ -1,31 +1,48 @@
 # -----------------------------------
 # Bisection
 # -----------------------------------
+#' @name BS
+#' @title Bisection Method
 #' @description
-#' Performs Bisection
-#'
-#' @param f function to be minimised
-#' @param inits vector of initial values to be minimised
-#' @param data (optional) daatframe with appropriate number of columns for number of variables being optimised
-#' @param minimum search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)
-#' @param tol tolerance level
-#' @param maxit maximum number of iterations run before stopping
-#' @param method identifier, takes "MVN" only to allow the parent function to call on it
-#' @param gradfn (optional) gradient function of f, uses finite differencing otherwise
-#' @param hessfn (optional) hessian function of f, uses finite differencing otherwise
+#'The Bisection method works by taking two initial points, finding their derivatives and then if they
+#'are opposite signs we look at the midpoint, repeating until we find where the derivative is zero
+#'or within tolerance.
+#'This method requires a smooth function.
+#' @param f Function to be minimised
+#' @param inits A length-2 numeric vector giving the initial search interval.
+#' The gradient at these two points must have opposite signs.
+#' @param data (optional) Dataframe passed to the function if needed.
+#' @param minimum Search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)
+#' @param tol Tolerance level
+#' @param maxit Maximum number of iterations run before stopping
+#' @param method NULL variable, included to match parent function inputs
+#' @param gradfn NULL variable, included to match parent function inputs
+#' @param hessfn NULL variable, included to match parent function inputs
 #' @param jacobfn NULL variable, included to match parent function inputs
 #'
-#' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
+#' @return A list containing:
+#' \item{estimate}{Optimized estimate}
+#' \item{feval}{Function evaluated at optimised estimate}
+#' \item{grad}{Gradient of function at optimised estimate}
+#' \item{tolerance}{Final interval width}
+#' \item{conv}{Whether or not the optimisation converged. 0 - converged, 1 - failed, 2 - max iterations reached}
+#' \item{niter}{Number of iterations}
+#' @references
+#' Swallow, B. (2025). Uniivariate Optimisation.
+#' University of St Andrews.
+#' \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128840/mod_resource/content/4/_book/univariate-optimization.html#bisection-method}
+#' @author Charles Beer
+#' @examples
+#' test_f<-function(x){
+#' return (x^5-3*x^4+12*x^3-5*x^2-3)
+#' }
+#' test_inits<-c(0.1,5)
+#' BS(test_f,test_inits)
+#'
 #' @importFrom numDeriv grad
-#-----------------------------------------------------------------
-#Bisection Method
-#The Bisection method works by taking two initial points, finding their derivatives and then if they
-#are opposite signs we look at the midpoint, repeating until we find where the derivative is zero
-#or within tolerance.
-#this method requires a smooth function
 #'@export
 BS<-function(f, inits, data=NULL, minimum=TRUE, tol=1e-8, maxit=100,
-             method=NULL, gradfn=NULL, hessfn=NULL, jacobfn=NULL){
+             method=BS, gradfn=NULL, hessfn=NULL, jacobfn=NULL){
   if (is.null(data)) {
     func<-function(x) f(x)
   } else {
