@@ -28,7 +28,7 @@
 #' \item{conv}{Whether or not the optimisation converged. 0 - converged, 1 - failed, 2 - max iterations reached}
 #' \item{niter}{Number of iterations}
 #' @references
-#' Swallow, B. (2025). Univariate Optimisation.
+#' Swallow, B. (2025). Univariate Optimization.
 #' University of St Andrews.
 #' \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128840/mod_resource/content/4/_book/univariate-optimization.html#bisection-method}
 #' @author Charles Beer
