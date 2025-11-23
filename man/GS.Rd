@@ -18,17 +18,17 @@ GS(
 )
 }
 \arguments{
-\item{f}{Function to be optimised}
+\item{f}{Function to be optimised, this should only take one variable}
 
 \item{inits}{An initial guess, the grid will be on +- 10 of this point}
 
-\item{data}{(optional) Dataframe passed to the function if needed.}
+\item{data}{(optional) NULL variable, included to match parent function inputs}
 
 \item{minimum}{(optional) Search for minimum or maximum (takes TRUE if minimum search, FALSE if maximum search)}
 
-\item{tol}{(optional) Tolerance level}
+\item{tol}{(optional) NULL variable, included to match parent function inputs}
 
-\item{maxit}{(optional) Maximum number of iterations run before stopping}
+\item{maxit}{(optional) NULL variable, included to match parent function inputs}
 
 \item{method}{(optional) NULL variable, included to match parent function inputs}
 
