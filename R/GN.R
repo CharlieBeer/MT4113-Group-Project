@@ -30,28 +30,30 @@
 #' \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128840/mod_resource/content/4/_book/non-linear-least-squares.html#gauss-newton-method}
 #' @author Ilana Goldman
 #' @examples
-#' test_f <- function(theta) {
-#'x <- theta[1]
-#'y <- theta[2]
-#'return(c(x - 3, y + 2))
-#'}
-#'test_inits <- c(0, 0)
-#'GN(f = test_f, inits = test_inits, data = NULL)
+#' f <- function(theta, data){
+#'   a <- theta[1]
+#'   b <- theta[2]
+#'   return(a * exp(b * data$x))
+#' }
+#'
+#' data <- list(x = 1:10, y = 2.5 * exp(-1.5 * 1:10))
+#' inits <- c(1, -1)
+#' 
+#' GN(f, inits, data)
 #' @export
 
 GN <- function(f, inits, data=NULL,minimum=TRUE, tol = 1e-10, maxit = 1000, method = "GN", gradfn = NULL, hessfn = NULL, jacobfn = NULL) {
 
-  #internal residuals function - modified to take data=NULL
+  #checks: stop if there is no dataframe
+  if (is.null(data)) {
+    stop("Error: a dataframe is required for the Gauss-Newton method")
+  }
+
+  #residuals function
   resids <- function(theta, data) {
-    if (is.null(data)) {
-      #when data=NULL return residuals directly
-      return(f(theta))
-    } else {
-      #when data is provided, compute residuals as usual
-      pred <- f(theta, data)
-      r <- data$y - pred
-      return(r)
-    }
+    pred <- f(theta, data)
+    r <- data$y - pred
+    return(r)
   }
 
   #compute jacobian if not provided
