@@ -3,6 +3,8 @@
 # -----------------------------------
 # Tolerance Checker
 # -----------------------------------
+#' @name Norm_Ratio
+#' @title Norm Ratio
 #' @description
 #' Computes the ratio of the Euclidean norm of 2 vectors
 #'
@@ -10,6 +12,7 @@
 #' @param theta estimate of the minimised values
 #'
 #' @returns the ratio of the Euclidean norm of the inputted vectors
+#' @author Holly Goldsmith
 #' @export
 
 Norm_Ratio <- function(delta, theta){
@@ -44,12 +47,29 @@ Norm_Ratio <- function(delta, theta){
 #' \item{niter}{Number of iterations run}
 #'
 #' @references
-#' Swallow, B. (2025). Univariate Optimisation.
+#' Swallow, B. (2025, October 29th). Multivariate Optimization (Lecture).
 #' University of St Andrews.
-#' \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128840/mod_resource/content/4/_book/univariate-optimization.html#bisection-method}
-#' @author
+#' \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128841/mod_resource/content/2/Chpater7_12.pdf]}
+#' @author Holly Goldsmith
 #'
-#' @returns A list containing the optimised estimate, the function evaluated at said estimate, the gradient of the function at the time, the tolerance level, whether the optimisation converged and the number of iterations ran.
+#' @return A list containing:
+#' \item{estimate}{Optimised estimate}
+#' \item{feval}{Function evaluated at optimised estimate}
+#' \item{grad}{Gradient of function at optimised estimate}
+#' \item{tolerance}{Tolerance level reached through optimisation}
+#' \item{conv}{Whether or not the optimisation converged. 0 - converged, 1 - did not converge, 2 - max iterations reached}
+#' \item{niter}{Number of iterations run}
+#'
+#' @note
+#' This function is one of 5 to be called with the parent function 'funoptim', also included in this package.
+#' @examples
+#' f <- function(theta){
+#'x <- theta[1]
+#'y <- theta[2]
+#'return((x-3)^2 + (y+2)^2)
+#'}
+#'
+#'MVN(f = f, inits = c(4, -1), data = NULL, minimum = TRUE, tol = 0.000001, maxit = 100, method = "MVN", gradfn = NULL, hessfn = NULL, jacobfn = NULL)
 #' @export
 
 MVN <- function(f, inits, data, minimum, tol, maxit,
