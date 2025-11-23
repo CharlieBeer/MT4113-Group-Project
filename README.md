@@ -8,7 +8,7 @@ or within tolerance.
 This method requires a smooth function.
 
 ### GN: 
-Performs non-linear least squares optimisation using Gauss-Newton method.
+The Gauss-Newton method works by iteratively solving a linear system derived from the initial problem, and updating the vector of parameters in accordance, until the parameter estimates converge completely or are within tolerance. This function requires a dataframe.
 
 ### GS: 
 The grid search method works by evaluating a function on points of a grid and picking
