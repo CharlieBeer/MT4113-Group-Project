@@ -128,30 +128,3 @@ MVN <- function(f, inits, data, minimum, tol, maxit,
               conv = conv,
               niter = niter))
 }
-
-
-# # With data (From Practical 6):
-# library(tidyverse)
-#
-# MiningData <- read.csv("MiningData.csv") %>%
-#   mutate(ratio = width/depth)
-#
-# alpha_0 <- median(MiningData$angle)
-# beta_0 <- median(na.omit(-log(1 - (MiningData$angle)/alpha_0) / MiningData$ratio))
-#
-# pred <- function(theta, data = MiningData %>% select(ratio, angle)){
-#   alpha <- theta[1]
-#   beta <- theta[2]
-#   return(alpha*(1 - exp(-beta*data$ratio)))
-# }
-# RSS <- function(theta, data = MiningData %>% select(ratio, angle)){
-#   predy <- pred(theta)
-#   ressq <- (data$angle - predy)^2
-#   return(sum(ressq))
-# }
-#
-# RSS_begin <- RSS(c(alpha_0, beta_0))
-# theta <- c(alpha_0, beta_0)
-#
-# MVN_test_2 <- funoptim(f = RSS, inits = theta, data = MiningData %>% select(ratio, angle), minimum = TRUE, tol = 0.000001, maxit = 100, method = "MVN", gradfn = NULL, hessfn = NULL, jacobfn = NULL)
-# MVN_test_2
