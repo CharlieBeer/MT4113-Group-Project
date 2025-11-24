@@ -19,7 +19,7 @@ Performs multivariate optimisation using Newton's method.
 The multivariate Newton method uses the gradient vector and Hessian matrix to expand Newton's method to multiple parameters.
 
 ### UVN:
-The univariate Newton method starts from an initial point and iterates by first and second derivatives. 
+The univariate optimisation iterates by first and second derivatives. 
 The Newton iterations determine a local minimum or maximum at each step.
 This process converges to either the minimum or maximum.
 
