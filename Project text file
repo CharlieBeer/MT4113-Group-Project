@@ -30,3 +30,4 @@ timeline of project:
 21/11 - tested functions, help files written manually
 22/11 - lots of debugging and testing
 23/11 - debugging & changed help files to be made by roxygen so that the package could be built.
+24/11 - formal test file added to repository and test functions run. Minor edits to functions.
