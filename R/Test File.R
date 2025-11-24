@@ -14,7 +14,7 @@ test_f<-function(x){
   return ((x-0.25)*(x-0.6)*(x-5)*(x-3))
 }
 test_inits<-c(0)
-GS(test_f,test_inits,minimum=TRUE,method="GS")
+funoptim(test_f,test_inits,minimum=TRUE,method="GS")
 #MVN
 
 #UVN
