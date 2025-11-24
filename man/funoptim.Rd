@@ -60,7 +60,7 @@ f <- function(theta){
 funoptim(f = f, inits = c(4, -1),method="MVN")
 }
 \references{
-Swallow, B. (2025). Univariate Optimization.
+Swallow, B. (2025). Computer Intensive Statistics.
 University of St Andrews.
 \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128841/mod_resource/content/2/Chpater7_12.pdf}
 }
