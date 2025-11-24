@@ -46,14 +46,6 @@ A list containing:
 \item{tolerance}{Tolerance level reached through optimisation}
 \item{conv}{Whether or not the optimisation converged. 0 - converged, 1 - did not converge, 2 - max iterations reached}
 \item{niter}{Number of iterations run}
-
-A list containing:
-\item{estimate}{Optimised estimate}
-\item{feval}{Function evaluated at optimised estimate}
-\item{grad}{Gradient of function at optimised estimate}
-\item{tolerance}{Tolerance level reached through optimisation}
-\item{conv}{Whether or not the optimisation converged. 0 - converged, 1 - did not converge, 2 - max iterations reached}
-\item{niter}{Number of iterations run}
 }
 \description{
 Performs multivariate optimisation using Newton's method
