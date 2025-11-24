@@ -25,7 +25,7 @@
 #' \item{niter}{Number of iterations run}
 #'
 #' @references
-#' Swallow, B. (2025). Univariate Optimization.
+#' Swallow, B. (2025). Computer Intensive Statistics.
 #' University of St Andrews.
 #' \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128841/mod_resource/content/2/Chpater7_12.pdf}
 #' @author Charlie Beer, Holly Goldsmith, Ilana Goldman, Chenyu Lin
@@ -71,9 +71,6 @@ funoptim <- function(f, inits=NULL, data=NULL, minimum=TRUE, tol=1e-8, maxit=100
     return(GN(f, inits, data, minimum, tol, maxit,
               method, gradfn, hessfn, jacobfn))
   }
-
-  stop("method not named correctly")
-
 }
 
 
