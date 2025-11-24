@@ -64,7 +64,7 @@ BS(test_f,test_inits)
 
 }
 \references{
-Swallow, B. (2025). Univariate Optimization.
+Swallow, B. (2025). The Bisection Method.
 University of St Andrews.
 \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128840/mod_resource/content/4/_book/univariate-optimization.html#bisection-method}
 }
