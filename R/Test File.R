@@ -38,8 +38,11 @@ funoptim(f = f, inits = c(4, -1), method = "MVN")
 
 
 #UVN
-test_f1 <- funciton(theta){
+# No Data
+test_f1 <- function(theta){
   x <- theta[1]
-  return((x-2)^2)
+  return((x-33)^3)
 }
 funoptim(test_f1, inits = 10, tol = 1e-6, maxit = 100, method="UVN")
+
+# With data:
