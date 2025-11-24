@@ -52,11 +52,8 @@ test_inits<-c(1,1)
 funoptim(test_f,test_inits,test_data,method="MVN")
 
 #UVN
-# No Data
 test_f1 <- function(theta){
   x <- theta[1]
   return((x-33)^3)
 }
 funoptim(test_f1, inits = 10, tol = 1e-6, maxit = 100, method="UVN")
-
-# With data:
