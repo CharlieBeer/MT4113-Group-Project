@@ -50,9 +50,6 @@ funoptim <- function(f, inits=NULL, data=NULL, minimum=TRUE, tol=1e-8, maxit=100
     stop("Error: 'minimum' must be either TRUE or FALSE")
   if(!method %in% c("GS", "BS", "UVN", "MVN", "GN"))
     stop("Error: method provided is invalid.")
-  if(!all(sapply(list(gradfn, hessfn, jacobfn), is.function))){
-    stop("Error: not all analytic functions are functions.")
-  }
 
   if (method=="GS"){
     return(GS(f, inits, data, minimum, tol, maxit,
