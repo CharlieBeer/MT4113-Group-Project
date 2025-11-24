@@ -8,6 +8,15 @@ test_inits<-c(0.1,5)
 funoptim(test_f,test_inits,method="BS")
 
 #GN
+test_f <- function(theta, data){
+  a <- theta[1]
+  b <- theta[2]
+  return(a * exp(b * data$x))
+}
+test_data <- list(x = 1:10, y = 2.5 * exp(-1.5 * 1:10))
+test_inits <- c(1, -1)
+
+funoptim(test_f, test_inits, test_data, method="GN")
 
 #GS
 test_f<-function(x){
