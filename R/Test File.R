@@ -35,6 +35,20 @@ f <- function(theta){
 funoptim(f = f, inits = c(4, -1), method = "MVN")
 
 # With data:
+n<-50
+x<-runif(n,0,2)
+y<-2*exp(0.8*x)+rnorm(n,0,0.2)
+test_data<-data.frame(x,y)
 
+test_f<-function(theta,data){
+  a<-theta[1]
+  b<-theta[2]
+  yhat<-a*exp(b*data$x)
+  return(sum((data$y-yhat)^2))
+}
+
+test_inits<-c(1,1)
+
+funoptim(test_f,test_inits,test_data,method="MVN")
 
 #UVN
