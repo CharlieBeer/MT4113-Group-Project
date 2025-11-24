@@ -1,4 +1,4 @@
-I confirm that this repository is the work of our team, except where clearly indicated in the text.
+We confirm that this repository is the work of our team, except where clearly indicated in the text.
 
 what the aim of this text file is:
 
@@ -21,21 +21,28 @@ we will each work on our respective code and then collate this into the parent o
 we will meet in person frequently in order to talk through issues in person
 
 timeline of project:
-11/11 - Grid Search & funoptim started.
+11/11 - First in person meeting
+      - Grid Search & funoptim started.
 12/11 - Bisection started
 14/11 - Multivariate Newton started & added functions to be called without importing
 18/11 - Error checks added to parent function & improved roxygen use
 19/11 - Univariate Newton & Gauss-Newton started
-20/11 - function descriptions written & lots of debugging
+20/11 - Second in-person meeting, DELAYED from 19/11 due to scheduling conflicts
+      - function descriptions written & lots of debugging
+      - some issues with the data argument in the Newton optimisers. Functions had difficulty when argument was not provided. SOLVED 20/11,
+      added wrapper function to stealthily pass data argument if necessary.
 21/11 - tested functions, help files written manually
       - lots of issues with Gauss-Newton encountered - it was thought that the [data] parameter needed to be optional within each function,
-but of course this is not possible with the Gauss-Newton method. Several failed attempts at resolving this.
+      but of course this is not possible with the Gauss-Newton method. Several failed attempts at resolving this. SOLVED 23/11.
       - started writing report
       - similary, both the Grid search and Bisection methods had a wrapper introduced so that the functions
-        would work when the input function took data as a variable.
+      would work when the input function took data as a variable.
 22/11 - lots of debugging and testing
 23/11 - debugging & changed help files to be made by roxygen so that the package could be built.
       - Finally realised GN method could not work without a dataframe, added stop & error message if no data input is provided.
       - Removed the wrapper function from the grid search and bisection methods and instead required
-        the input function to take only one variable.
-24/11 - formal test file added to repository and test functions run. Minor edits to functions.
+      the input function to take only one variable.
+24/11 - Third in-person meeting
+      - formal test file added to repository and test functions run. Minor edits to functions.
+
+For a more detailed timeline, see the Github repository commit history.
