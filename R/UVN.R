@@ -131,7 +131,7 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
 }
 
 # =====================
-# Test
+# Test with data set
 # =====================
 #library(tidyverse)
 #MiningData <- read.csv("MiningData.csv") %>%
@@ -144,7 +144,7 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
 #  pred <- alpha * (1 - exp(-beta * data$ratio))
 #  sum((data$angle - pred)^2)
 #}
-#UVN_test2 <- UVN(f = RSS_UVN, inits = alpha_0, data = MiningData %>% select(ratio, angle),
+#UVN_test <- UVN(f = RSS_UVN, inits = alpha_0, data = MiningData %>% select(ratio, angle),
 #                      minimum = TRUE, tol = 1e-6, maxit = 100, method = "UVN", gradfn = NULL,
 #                      hessfn = NULL, jacobfn = NULL)
-#UVN_test2
+#UVN_test

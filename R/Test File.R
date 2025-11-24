@@ -18,3 +18,8 @@ GS(test_f,test_inits,minimum=TRUE,method="GS")
 #MVN
 
 #UVN
+test_f1 <- funciton(theta){
+  x <- theta[1]
+  return((x-2)^2)
+}
+funoptim(test_f1, inits = 10, tol = 1e-6, maxit = 100, method="UVN")
