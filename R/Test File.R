@@ -24,6 +24,7 @@ test_f<-function(x){
 }
 test_inits<-c(0)
 funoptim(test_f,test_inits,minimum=TRUE,method="GS")
+
 #MVN
 # No data:
 f <- function(theta){
