@@ -15,6 +15,18 @@ test_f<-function(x){
 }
 test_inits<-c(0)
 GS(test_f,test_inits,minimum=TRUE,method="GS")
+
 #MVN
+# No data:
+f <- function(theta){
+  x <- theta[1]
+  y <- theta[2]
+  return((x-3)^2 + (y+2)^2)
+}
+
+funoptim(f = f, inits = c(4, -1), method = "MVN")
+
+# With data:
+
 
 #UVN
