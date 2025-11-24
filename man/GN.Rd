@@ -18,13 +18,13 @@ GN(
 )
 }
 \arguments{
-\item{f}{the function to be optimised - if no dataframe provided, f MUST return vector of residuals directly}
+\item{f}{the function to be optimised}
 
 \item{inits}{a vector of initial guesses for each parameter to be optimised.}
 
-\item{data}{(optional, if f returns residuals) dataframe containing the data}
+\item{data}{dataframe containing the data}
 
-\item{minimum}{this is here just so that the parent function runs smoothly}
+\item{minimum}{not relevant, included to match parent function inputs}
 
 \item{tol}{tolerance level}
 
@@ -51,13 +51,16 @@ A list containing:
 Performs non-linear least squares optimisation using Gauss-Newton method
 }
 \examples{
-test_f <- function(theta) {
-x <- theta[1]
-y <- theta[2]
-return(c(x - 3, y + 2))
+f <- function(theta, data){
+  a <- theta[1]
+  b <- theta[2]
+  return(a * exp(b * data$x))
 }
-test_inits <- c(0, 0)
-GN(f = test_f, inits = test_inits, data = NULL)
+
+data <- list(x = 1:10, y = 2.5 * exp(-1.5 * 1:10))
+inits <- c(1, -1)
+
+GN(f, inits, data)
 }
 \references{
 Swallow, B. (2025). Non-Linear Least Squares.

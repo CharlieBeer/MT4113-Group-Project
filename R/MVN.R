@@ -52,14 +52,6 @@ Norm_Ratio <- function(delta, theta){
 #' \url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128841/mod_resource/content/2/Chpater7_12.pdf]}
 #' @author Holly Goldsmith
 #'
-#' @return A list containing:
-#' \item{estimate}{Optimised estimate}
-#' \item{feval}{Function evaluated at optimised estimate}
-#' \item{grad}{Gradient of function at optimised estimate}
-#' \item{tolerance}{Tolerance level reached through optimisation}
-#' \item{conv}{Whether or not the optimisation converged. 0 - converged, 1 - did not converge, 2 - max iterations reached}
-#' \item{niter}{Number of iterations run}
-#'
 #' @note
 #' This function is one of 5 to be called with the parent function 'funoptim', also included in this package.
 #' @examples
