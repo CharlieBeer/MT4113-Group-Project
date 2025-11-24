@@ -55,6 +55,18 @@ funoptim(test_f,test_inits,test_data,method="MVN")
 #UVN
 test_f1 <- function(theta){
   x <- theta[1]
-  return((x-33)^3)
+  return((x-33)^2)
 }
-funoptim(test_f1, inits = 10, tol = 1e-6, maxit = 100, method="UVN")
+funoptim(test_f1, inits = 10, method="UVN")
+
+# With data:
+n <- 50
+x <- runif(n, 0, 2)
+test_data <- data.frame(x)
+
+test_f2 <- function(theta, data){
+  x <- data$x
+  return(sum((x - theta)^2))
+}
+test_inits <- 1
+funoptim(test_f2, test_inits, data = test_data, method = "UVN")

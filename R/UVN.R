@@ -33,7 +33,7 @@
 #' @examples
 #' f <- function(theta){
 #' x <- theta[1]
-#' return((x - 33)^3)
+#' return((x - 33)^2)
 #' }
 #' UVN(f = f, inits = 10, data = NULL, minimum = TRUE,
 #' tol = 1e-6, maxit = 100, method = "UVN",
@@ -129,22 +129,3 @@ UVN <- function(f, inits, data, minimum, tol, maxit,
 
   return(result)
 }
-
-# =====================
-# Test with data set
-# =====================
-#library(tidyverse)
-#MiningData <- read.csv("MiningData.csv") %>%
-#  mutate(ratio = width/depth)
-#alpha_0 <- median(MiningData$angle)
-#beta_0 <- median(na.omit(-log(1 - (MiningData$angle)/alpha_0) / MiningData$ratio))
-#RSS_UVN <- function(theta, data){
-#  alpha <- theta
-#  beta  <- beta_0
-#  pred <- alpha * (1 - exp(-beta * data$ratio))
-#  sum((data$angle - pred)^2)
-#}
-#UVN_test <- UVN(f = RSS_UVN, inits = alpha_0, data = MiningData %>% select(ratio, angle),
-#                      minimum = TRUE, tol = 1e-6, maxit = 100, method = "UVN", gradfn = NULL,
-#                      hessfn = NULL, jacobfn = NULL)
-#UVN_test
