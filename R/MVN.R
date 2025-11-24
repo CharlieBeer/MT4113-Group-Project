@@ -129,17 +129,7 @@ MVN <- function(f, inits, data, minimum, tol, maxit,
               niter = niter))
 }
 
-# TEST FUNCTIONS
-# # No data:
-# f <- function(theta){
-#   x <- theta[1]
-#   y <- theta[2]
-#   return((x-3)^2 + (y+2)^2)
-# }
-#
-# MVN_test <- funoptim(f = f, inits = c(4, -1), data = NULL, minimum = TRUE, tol = 0.000001, maxit = 100, method = "MVN", gradfn = NULL, hessfn = NULL, jacobfn = NULL)
-# MVN_test
-#
+
 # # With data (From Practical 6):
 # library(tidyverse)
 #
