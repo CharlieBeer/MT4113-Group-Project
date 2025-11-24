@@ -28,6 +28,10 @@ timeline of project:
 19/11 - Univariate Newton & Gauss-Newton started
 20/11 - function descriptions written & lots of debugging
 21/11 - tested functions, help files written manually
+      - lots of issues with Gauss-Newton encountered - it was thought that the [data] parameter needed to be optional within each function,
+but of course this is not possible with the Gauss-Newton method. Several failed attempts at resolving this.
+      - started writing report
 22/11 - lots of debugging and testing
 23/11 - debugging & changed help files to be made by roxygen so that the package could be built.
+      - Finally realised GN method could not work without a dataframe, added stop & error message if no data input is provided.
 24/11 - formal test file added to repository and test functions run. Minor edits to functions.
