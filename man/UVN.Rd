@@ -53,7 +53,7 @@ Performs univariate optimisation using Newton's method
 \examples{
 f <- function(theta){
 x <- theta[1]
-return((x - 33)^3)
+return((x - 33)^2)
 }
 UVN(f = f, inits = 10, data = NULL, minimum = TRUE,
 tol = 1e-6, maxit = 100, method = "UVN",
