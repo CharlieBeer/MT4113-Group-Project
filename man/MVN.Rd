@@ -65,7 +65,7 @@ MVN(f = f, inits = c(4, -1), data = NULL, minimum = TRUE, tol = 0.000001, maxit 
 \references{
 Swallow, B. (2025, October 29th). Multivariate Optimization (Lecture).
 University of St Andrews.
-\url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128841/mod_resource/content/2/Chpater7_12.pdf]}
+\url{https://moody.st-andrews.ac.uk/moodle/pluginfile.php/2128841/mod_resource/content/2/Chpater7_12.pdf}
 }
 \author{
 Holly Goldsmith
